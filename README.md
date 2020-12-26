@@ -1,5 +1,5 @@
 ## systemd-rest / A minimal HTTP REST interface for systemd.
-[![AUR](https://img.shields.io/aur/license/yaourt.svg)](blob/master/LICENSE)
+![](https://github.com/codexlynx/systemd-rest/workflows/CI/badge.svg) [![AUR](https://img.shields.io/aur/license/yaourt.svg)](blob/master/LICENSE)
 
 ### Architecture:
 This service communicates with systemd via dbus (IPC). ```http <-> systemd-rest <-> dbus <-> systemd```
@@ -24,7 +24,7 @@ Currently configured using environment variables.
 
 * Launch service for tests development:
 > $ make test ARGS="follow"
-> $ PORT=7777 CONTAINER_ID=<testing container id> pytest -sv
+> $ PORT=7777 CONTAINER_ID=[Testing container id] pytest -sv
 
 * Generate build:
 > $ make
