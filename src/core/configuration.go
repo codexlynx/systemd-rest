@@ -33,4 +33,3 @@ func GetConfiguration() (Mode, string) {
 	listenAddress := fmt.Sprintf("%s:%s", address, port)
 	return mode, listenAddress
 }
-

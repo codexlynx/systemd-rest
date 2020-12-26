@@ -5,7 +5,7 @@ import (
 	"github.com/coreos/go-systemd/dbus"
 )
 
-type InvalidUnitName struct {}
+type InvalidUnitName struct{}
 
 func (e *InvalidUnitName) Error() string {
 	return "Invalid systemd unit name"
@@ -19,13 +19,13 @@ func newDbusConnection() *dbus.Conn {
 	return connection
 }
 
-func GetUnits() ([]dbus.UnitStatus, error){
+func GetUnits() ([]dbus.UnitStatus, error) {
 	conn := newDbusConnection()
 	defer conn.Close()
 	return conn.ListUnitsContext(context.Background())
 }
 
-func checkUnit(name string) (*string, error)  {
+func checkUnit(name string) (*string, error) {
 	units, err := GetUnits()
 	if err != nil {
 		return nil, err
@@ -78,4 +78,3 @@ func StopUnit(name string, wait bool) error {
 	}
 	return err
 }
-
