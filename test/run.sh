@@ -32,4 +32,6 @@ start
 set +e
 exec_service "${1}"
 pytest -sv
+result=$?
 clean
+exit "${result}"
