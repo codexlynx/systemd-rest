@@ -1,0 +1,9 @@
+[Unit]
+Description=systemd-rest testing unit
+
+[Service]
+ExecStart=/usr/bin/yes
+ExecStop=/bin/kill -s QUIT $MAINPID
+
+[Install]
+WantedBy=multi-user.target
