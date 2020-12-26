@@ -2,10 +2,7 @@ package core
 
 import (
 	"context"
-	"fmt"
 	"github.com/coreos/go-systemd/dbus"
-	"github.com/coreos/go-systemd/sdjournal"
-	"io"
 )
 
 type InvalidUnitName struct{}
@@ -82,30 +79,3 @@ func StopUnit(name string, wait bool) error {
 	return err
 }
 
-func ReadUnitJournal(name string) error  {
-	journalReaderConfig := sdjournal.JournalReaderConfig{
-		Matches: []sdjournal.Match{
-			{
-				Field: sdjournal.SD_JOURNAL_FIELD_SYSTEMD_UNIT,
-				Value: name,
-			},
-		},
-	}
-
-	journalReader, err := sdjournal.NewJournalReader(journalReaderConfig)
-	if err != nil {
-		panic(err)
-	}
-
-	buffer := make([]byte, 64 * 1 << (10)) // 64KB.
-	for {
-		content, err := journalReader.Read(buffer)
-		if err != nil {
-			if err == io.EOF {
-				break
-			}
-			panic(err)
-		}
-		fmt.Print(string(buffer[:content]))
-	}
-}
