@@ -13,7 +13,7 @@ def test_init():
 
 def test_get_existing_units():
     req = requests.get('%s/api/v1/units' % api_address)
-    assert len(req.json()) >= 83
+    assert len(req.json()) >= 81
 
 def test_get_existing_unit_response():
     req = requests.get('%s/api/v1/units/testing-unit.service' % api_address)
