@@ -1,4 +1,4 @@
-name: Build and test of systemd-rest project
+name: CI
 on:
   push:
     branches:
