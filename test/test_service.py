@@ -3,8 +3,18 @@ import testinfra
 import requests
 import os
 
+def find_test_container(port):
+    local_host = testinfra.get_host('local://')
+    for container in local_host.docker.get_containers(status='running'):
+        inspection = container.inspect()
+        ports = inspection['HostConfig']['PortBindings']
+        if type(ports) is dict: # Sometimes return None
+            for binding in ports:
+                if ports[binding][0]['HostPort'] == port:
+                    return inspection['Id']
+
 api_address = 'http://127.0.0.1:%s' % os.environ['PORT']
-systemd_host = testinfra.get_host('docker://%s' % os.environ['CONTAINER_ID'])
+systemd_host = testinfra.get_host('docker://%s' % find_test_container(os.environ['PORT']))
 
 def test_init():
     systemd_host.run('systemctl start testing-unit.service')

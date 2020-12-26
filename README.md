@@ -5,7 +5,7 @@
 This service communicates with systemd via dbus (IPC). ```http <-> systemd-rest <-> dbus <-> systemd```
 
 ### Features:
-* Manage units (start. stop, status)
+* Manage units (start, stop, status)
 * List units
 
 ### Configuration:
@@ -13,21 +13,27 @@ Currently configured using environment variables.
 
 | Variable | Description | Default |
 | -- | -- | -- |
-| __PORT__ | HTTP server listen port | 6789 |
-| __ADDRESS__ | HTTP server listen address | 127.0.0.1 |
+| __PORT__ | HTTP service listen port | 6789 |
+| __ADDRESS__ | HTTP service listen address | 127.0.0.1 |
 | __MODE__ | Service mode, can be `release` or `debug` | release |
 
 ### Development:
 
 * Launch tests:
-> $ make test
+```
+$ make test
+```
 
 * Launch service for tests development:
-> $ make test ARGS="follow"
-> $ PORT=7777 CONTAINER_ID=[Testing container id] pytest -sv
+```
+$ make test ARGS="follow"
+$ PORT=7777 pytest -sv
+```
 
 * Generate build:
-> $ make
+```
+$ make
+```
 
 ### License:
 > GPL (GNU General Public License) 3.0
