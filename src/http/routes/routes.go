@@ -13,6 +13,7 @@ func StartRouter() *gin.Engine {
 		api.GET("units/:name", controllers.GetUnit)
 		api.POST("units/:name/start", controllers.StartUnit)
 		api.POST("units/:name/stop", controllers.StopUnit)
+		api.GET("journal/:name", controllers.GetUnitJournal)
 	}
 	return router
 }

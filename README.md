@@ -7,6 +7,7 @@ This service communicates with systemd via dbus (IPC). ```http <-> systemd-rest 
 ### Features:
 * Manage units (start, stop, status)
 * List units
+* Read unit journal
 
 ### Configuration:
 Currently configured using environment variables.

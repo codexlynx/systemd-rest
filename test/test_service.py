@@ -67,3 +67,11 @@ def test_post_nonexisting_unit_stop():
 def test_post_nonexisting_unit_start():
     req = requests.post('%s/api/v1/units/non-exist.service/start' % api_address)
     assert req.status_code == 404
+
+def test_get_existing_unit_journal():
+    req = requests.get('%s/api/v1/journal/testing-unit.service' % api_address)
+    assert req.text.count('UTC y') > 5
+
+def test_get_nonexisting_unit_journal():
+    req = requests.get('%s/api/v1/journal/non-exist.service' % api_address)
+    assert req.status_code == 404

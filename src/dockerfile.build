@@ -2,7 +2,7 @@ FROM golang:1.15.5-buster as builder
 WORKDIR /go/src/github.com/codexlynx/systemd-rest
 
 RUN apt-get update -y \
-    && apt-get install git -y\
+    && apt-get install git libsystemd-dev -y\
     && mkdir -p /build/dist/
 
 RUN go get github.com/coreos/go-systemd/dbus \
