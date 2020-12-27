@@ -18,32 +18,34 @@ func GetUnits(ctx *gin.Context) {
 func GetUnit(ctx *gin.Context) {
 	unitName := ctx.Params.ByName("name")
 	switch unit, err := core.GetUnit(unitName); err.(type) {
-	default:
-		panic(err)
 	case *core.InvalidUnitName:
 		ctx.Status(http.StatusNotFound)
 	case nil:
 		ctx.JSON(http.StatusOK, unit)
+	default:
+		panic(err)
 	}
 	return
 }
 
 func StartUnit(ctx *gin.Context) {
 	unitName := ctx.Params.ByName("name")
-	switch err := core.StartUnit(unitName, false); err.(type) {
-	default:
-		panic(err)
+	_, wait := ctx.GetQuery("wait")
+	switch err := core.StartUnit(unitName, wait); err.(type) {
 	case *core.InvalidUnitName:
 		ctx.Status(http.StatusNotFound)
 	case nil:
 		ctx.Status(http.StatusOK)
+	default:
+		panic(err)
 	}
 	return
 }
 
 func StopUnit(ctx *gin.Context) {
 	unitName := ctx.Params.ByName("name")
-	switch err := core.StopUnit(unitName, false); err.(type) {
+	_, wait := ctx.GetQuery("wait")
+	switch err := core.StopUnit(unitName, wait); err.(type) {
 	case *core.InvalidUnitName:
 		ctx.Status(http.StatusNotFound)
 	case nil:

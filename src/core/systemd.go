@@ -78,4 +78,3 @@ func StopUnit(name string, wait bool) error {
 	}
 	return err
 }
-

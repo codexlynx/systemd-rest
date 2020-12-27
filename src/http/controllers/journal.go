@@ -6,15 +6,15 @@ import (
 	"net/http"
 )
 
-func GetUnitJournal(ctx *gin.Context)  {
+func GetUnitJournal(ctx *gin.Context) {
 	unitName := ctx.Params.ByName("name")
-	switch content, err := core.ReadUnitJournal(unitName); err.(type) {
-	default:
-		panic(err)
+	switch journal, err := core.ReadUnitJournal(unitName); err.(type) {
 	case *core.InvalidUnitName:
 		ctx.Status(http.StatusNotFound)
 	case nil:
-		ctx.Data(http.StatusOK, "text/plain", content)
+		ctx.Data(http.StatusOK, "text/plain", journal)
+	default:
+		panic(err)
 	}
 	return
 }
