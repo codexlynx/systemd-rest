@@ -3,13 +3,14 @@ package controllers
 import (
 	"github.com/codexlynx/systemd-rest/src/core"
 	"github.com/gin-gonic/gin"
+	"log"
 	"net/http"
 )
 
 func GetUnits(ctx *gin.Context) {
 	units, err := core.GetUnits()
 	if err != nil {
-		panic(err)
+		log.Print(err)
 	}
 	ctx.JSON(http.StatusOK, units)
 	return
@@ -23,7 +24,7 @@ func GetUnit(ctx *gin.Context) {
 	case nil:
 		ctx.JSON(http.StatusOK, unit)
 	default:
-		panic(err)
+		log.Print(err)
 	}
 	return
 }
@@ -35,9 +36,9 @@ func StartUnit(ctx *gin.Context) {
 	case *core.InvalidUnitName:
 		ctx.Status(http.StatusNotFound)
 	case nil:
-		ctx.Status(http.StatusOK)
+		ctx.Status(http.StatusCreated)
 	default:
-		panic(err)
+		log.Print(err)
 	}
 	return
 }
@@ -49,9 +50,9 @@ func StopUnit(ctx *gin.Context) {
 	case *core.InvalidUnitName:
 		ctx.Status(http.StatusNotFound)
 	case nil:
-		ctx.Status(http.StatusOK)
+		ctx.Status(http.StatusCreated)
 	default:
-		panic(err)
+		log.Print(err)
 	}
 	return
 }

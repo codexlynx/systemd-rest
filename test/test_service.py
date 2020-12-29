@@ -24,6 +24,7 @@ def test_init():
 def test_get_existing_units():
     req = requests.get('%s/api/v1/units' % api_address)
     assert len(req.json()) >= 81
+    assert req.status_code == 200
 
 def test_get_existing_unit_response():
     req = requests.get('%s/api/v1/units/testing-unit.service' % api_address)
@@ -33,13 +34,16 @@ def test_get_existing_unit_response():
     assert len(result) == 10
     for key in expected_keys:
         assert key in result
+    assert req.status_code == 200
 
 def test_get_existing_unit_status():
     req = requests.get('%s/api/v1/units/testing-unit.service' % api_address)
     assert req.json()['ActiveState'] == 'active'
+    assert req.status_code == 200
 
 def test_post_existing_unit_stop():
-    requests.post('%s/api/v1/units/testing-unit.service/stop' % api_address)
+    req = requests.post('%s/api/v1/units/testing-unit.service/stop' % api_address)
+    assert req.status_code == 201
 
     status = systemd_host.run('systemctl -q is-active testing-unit.service')
     assert status.rc != 0
@@ -48,7 +52,8 @@ def test_post_existing_unit_stop():
     assert req.json()['ActiveState'] != 'active'
 
 def test_post_existing_unit_start():
-    requests.post('%s/api/v1/units/testing-unit.service/start' % api_address)
+    req = requests.post('%s/api/v1/units/testing-unit.service/start' % api_address)
+    assert req.status_code == 201
 
     status = systemd_host.run('systemctl -q is-active testing-unit.service')
     assert status.rc == 0
@@ -71,6 +76,7 @@ def test_post_nonexisting_unit_start():
 def test_get_existing_unit_journal():
     req = requests.get('%s/api/v1/journal/testing-unit.service' % api_address)
     assert req.text.count('UTC y') > 5
+    assert req.status_code == 200
 
 def test_get_nonexisting_unit_journal():
     req = requests.get('%s/api/v1/journal/non-exist.service' % api_address)

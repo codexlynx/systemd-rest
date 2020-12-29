@@ -11,8 +11,6 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
       - name: Install testing tools
-        run: |
-          cd test
-          pip install -r requirements.txt
+        run: pip install -r test/requirements.txt
       - name: Build and test service
         run: make all

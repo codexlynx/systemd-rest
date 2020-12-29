@@ -3,6 +3,7 @@ package controllers
 import (
 	"github.com/codexlynx/systemd-rest/src/core"
 	"github.com/gin-gonic/gin"
+	"log"
 	"net/http"
 )
 
@@ -14,7 +15,7 @@ func GetUnitJournal(ctx *gin.Context) {
 	case nil:
 		ctx.Data(http.StatusOK, "text/plain", journal)
 	default:
-		panic(err)
+		log.Print(err)
 	}
 	return
 }
