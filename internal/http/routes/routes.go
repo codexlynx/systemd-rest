@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"github.com/codexlynx/systemd-rest/src/http/controllers"
+	"github.com/codexlynx/systemd-rest/internal/http/controllers"
 	"github.com/gin-gonic/gin"
 )
 

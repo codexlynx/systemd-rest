@@ -9,7 +9,7 @@ RUN go get github.com/coreos/go-systemd/dbus \
     && go get github.com/gin-gonic/gin
 
 COPY . .
-RUN go build -o /build/dist/systemd-rest ./src
+RUN go build -o /build/dist/systemd-rest ./cmd/systemd-rest
 
 FROM scratch AS binary
 COPY --from=builder /build/dist /

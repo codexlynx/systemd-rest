@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"github.com/codexlynx/systemd-rest/src/core"
+	"github.com/codexlynx/systemd-rest/internal/core"
 	"github.com/gin-gonic/gin"
 	"log"
 	"net/http"
