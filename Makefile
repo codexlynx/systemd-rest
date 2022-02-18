@@ -1,4 +1,4 @@
-build: dist/systemd-rest
+build: dist/systemd-rest_amd64
 
 test:
 	@MODE=debug PORT=7777 ./test/run.sh $(ARGS)
@@ -7,12 +7,12 @@ release:
 	@echo release
 
 gofmt:
-	@find src -type f -name "*.go" -execdir go fmt \;
+	@gofmt -s -w .
 
 clean:
-	@rm dist/systemd-rest
+	@rm dist/*
 
-dist/systemd-rest:
+dist/systemd-rest_amd64:
 	@DOCKER_BUILDKIT=1 docker build -f build/build.dockerfile --target binary --output dist/ .
 
 all: build test release
