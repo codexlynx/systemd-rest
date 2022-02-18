@@ -2,7 +2,7 @@ package core
 
 import (
 	"context"
-	"github.com/coreos/go-systemd/dbus"
+	"github.com/coreos/go-systemd/v22/dbus"
 )
 
 type InvalidUnitName struct{}

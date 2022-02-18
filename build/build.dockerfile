@@ -1,15 +1,12 @@
-FROM golang:1.15.5-buster as builder
+FROM golang:1.15.5-buster AS builder
 WORKDIR /go/src/github.com/codexlynx/systemd-rest
 
 RUN apt-get update -y \
-    && apt-get install git libsystemd-dev -y\
+    && apt-get install libsystemd-dev -y \
     && mkdir -p /build/dist/
 
-RUN go get github.com/coreos/go-systemd/dbus \
-    && go get github.com/gin-gonic/gin
-
 COPY . .
-RUN go build -o /build/dist/systemd-rest ./cmd/systemd-rest
+RUN go build -o /build/dist/systemd-rest-x86_64 ./cmd/systemd-rest
 
 FROM scratch AS binary
 COPY --from=builder /build/dist /

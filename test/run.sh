@@ -22,9 +22,9 @@ function exec_service(){
   docker exec -it "${CONTAINER_ID}" /bin/systemctl enable testing-unit.service
   docker exec -it "${CONTAINER_ID}" /bin/systemctl start testing-unit.service
   if [[ "${1}" == "follow" ]]; then
-    docker exec -e MODE -e PORT -e ADDRESS=0.0.0.0 -it "${CONTAINER_ID}"  /test/systemd-rest
+    docker exec -e MODE -e PORT -e ADDRESS=0.0.0.0 -it "${CONTAINER_ID}"  /test/systemd-rest-x86_64
   else
-    docker exec -e MODE -e PORT -e ADDRESS=0.0.0.0 -itd "${CONTAINER_ID}" /test/systemd-rest
+    docker exec -e MODE -e PORT -e ADDRESS=0.0.0.0 -itd "${CONTAINER_ID}" /test/systemd-rest-x86_64
   fi
 }
 
