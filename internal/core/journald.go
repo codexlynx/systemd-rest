@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 )
 
+// ReadUnitJournal to read a unit journal.
 func ReadUnitJournal(name string) ([]byte, error) {
 	_, err := checkUnit(name)
 	if err != nil {

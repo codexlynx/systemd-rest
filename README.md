@@ -1,5 +1,5 @@
 ## systemd-rest / A minimal HTTP REST interface for systemd.
-[![](https://github.com/codexlynx/systemd-rest/workflows/CI/badge.svg)](https://github.com/codexlynx/systemd-rest/actions) [![AUR](https://img.shields.io/github/license/codexlynx/systemd-rest)](LICENSE)
+[![](https://github.com/codexlynx/systemd-rest/workflows/CI/badge.svg)](https://github.com/codexlynx/systemd-rest/actions) [![AUR](https://img.shields.io/github/license/codexlynx/systemd-rest)](LICENSE) [![](https://goreportcard.com/badge/github.com/codexlynx/systemd-rest)](https://goreportcard.com/report/github.com/codexlynx/systemd-rest)
 
 ### Architecture:
 This service communicates with systemd via dbus (IPC). ```http <-> systemd-rest <-> dbus <-> systemd```

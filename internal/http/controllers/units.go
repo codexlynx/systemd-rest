@@ -7,6 +7,8 @@ import (
 	"net/http"
 )
 
+
+// GetUnits to list and return units via HTTP.
 func GetUnits(ctx *gin.Context) {
 	units, err := core.GetUnits()
 	if err != nil {
@@ -16,6 +18,8 @@ func GetUnits(ctx *gin.Context) {
 	return
 }
 
+
+// GetUnit to get and return single unit via HTTP.
 func GetUnit(ctx *gin.Context) {
 	unitName := ctx.Params.ByName("name")
 	switch unit, err := core.GetUnit(unitName); err.(type) {
@@ -29,6 +33,8 @@ func GetUnit(ctx *gin.Context) {
 	return
 }
 
+
+// StartUnit to start a unit via HTTP.
 func StartUnit(ctx *gin.Context) {
 	unitName := ctx.Params.ByName("name")
 	_, wait := ctx.GetQuery("wait")
@@ -43,6 +49,8 @@ func StartUnit(ctx *gin.Context) {
 	return
 }
 
+
+// StopUnit to stop a unit via HTTP.
 func StopUnit(ctx *gin.Context) {
 	unitName := ctx.Params.ByName("name")
 	_, wait := ctx.GetQuery("wait")

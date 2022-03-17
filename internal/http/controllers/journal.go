@@ -7,6 +7,7 @@ import (
 	"net/http"
 )
 
+// GetUnitJournal to get and return a service journal via HTTP.
 func GetUnitJournal(ctx *gin.Context) {
 	unitName := ctx.Params.ByName("name")
 	switch journal, err := core.ReadUnitJournal(unitName); err.(type) {

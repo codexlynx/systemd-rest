@@ -5,6 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// StartRouter to start Gin router.
 func StartRouter() *gin.Engine {
 	router := gin.Default()
 	api := router.Group("/api/v1")

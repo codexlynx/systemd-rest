@@ -5,13 +5,15 @@ import (
 	"os"
 )
 
+// Mode type.
 type Mode int
 
 const (
-	DebugMode   = iota
-	ReleaseMode = iota
+	DebugMode   = iota // Debug mode.
+	ReleaseMode = iota // Release mode.
 )
 
+// GetConfiguration to get all configuration.
 func GetConfiguration() (Mode, string) {
 	var mode Mode
 	if os.Getenv("MODE") == "debug" {
